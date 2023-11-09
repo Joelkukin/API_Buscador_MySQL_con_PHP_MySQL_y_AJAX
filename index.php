@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador MySql realTime</title>
+    <style>
+        table, th, td {
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- esta es una aplicación web que a medida que se escribe en el buscador va buscando en la base de datos -->
+    <form action="" method="post">
+        <label for="inputSearch">Buscar: </label>
+        <input type="text" name="inputSearch" id="inputSearch">
+    </form>
+    <div id="tablaBD"></div>
+
+<script src="./js/main.js" type="module"></script>
+
+</body>
+</html>
