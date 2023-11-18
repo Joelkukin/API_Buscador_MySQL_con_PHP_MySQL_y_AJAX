@@ -25,6 +25,7 @@
             return "La consulta no ha obtenido resultados";
         }
         return $resultado;
-    }
+    } 
 
+    
 ?>
