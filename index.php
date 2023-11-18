@@ -11,8 +11,9 @@
     </style>
 </head>
 <body>
+    <h2>Base de datos Posts</h2>
     <!-- esta es una aplicación web que a medida que se escribe en el buscador va buscando en la base de datos -->
-    <form action="" method="post">
+    <form action="" method="post" id="formulario">
         <label for="inputSearch">Buscar: </label>
         <input type="text" name="inputSearch" id="inputSearch">
     </form>
