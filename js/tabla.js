@@ -1,37 +1,17 @@
 export default class Tabla{
     modelo=[];
     html;
-    constructor(...modelo){        
+    constructor(...modelo){   
+        
         this.modelo = modelo;
         let headers = modelo.shift();
         let filas = modelo;
         let filasHtml = "";
         
-        console.log("modelo = ",this.modelo);
-        console.log("headers = ",headers);
-        console.log("filas = ",filas);
-
-        function filaHtml(celdas){ // recibe un array
-            let celdasArr = celdas;
-            let celdasHtml = celdasArr.join("</td><td>"); // unimos las celdas
-            let filaHtml = // creamos la fila
-            `
-            <tr class="toggle">
-                <td>${celdasHtml}</td>
-                <td style="display:none">
-                    <input type="button"id="editarFila" value="Editar"></input>
-                    <input type="button"id="eliminarFila" value="Eliminar"></input>
-                </td>
-            </tr>
-            `
-            return filaHtml;
-        }
-        
-        
         console.log("filas Html= ",filasHtml);
         // unimos las filas en un solo texto html
         for (let i=0; i < filas.length ; i++){
-            filasHtml += filaHtml(filas[i]);
+            filasHtml += this.filaHtml(filas[i]);
         }
 
         // creamos el elemento tabla y
@@ -68,13 +48,28 @@ export default class Tabla{
                         botones.style.display = "flex";
                     }else{botones.style.display = "none";}
                 }
-            )}
+            )}s
         )
         
         return this.html;
         
     }
     
+    filaHtml(celdas){ // recibe un array
+        let celdasArr = celdas;
+        let celdasHtml = celdasArr.join("</td><td>"); // unimos las celdas
+        let filaHtml = // creamos la fila
+        `
+        <tr class="toggle">
+            <td>${celdasHtml}</td>
+            <td style="display:none">
+                <input type="button"id="editarFila" value="Editar"></input>
+                <input type="button"id="eliminarFila" value="Eliminar"></input>
+            </td>
+        </tr>
+        `
+        return filaHtml;
+    }
     
         
     
