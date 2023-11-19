@@ -27,9 +27,10 @@ function getData()
 // TRANSFORMAR datos en un array procesable por el objeto tabla
 
 // TABLA pinta los datos en forma de tabla
-let tabla= new Tabla(
+let tabla = new Tabla(
     ["id_post", "id_clase", "contenido", "likes", "fecha", "hora"],
-    ["", "", "", "", "", ""]
+    ["A", "A", "A", "A", "A", "A"],
+    ["B", "B", "B", "B", "B", "B"]
 );
 
 let placeTabla = document.querySelector("#tablaBD");

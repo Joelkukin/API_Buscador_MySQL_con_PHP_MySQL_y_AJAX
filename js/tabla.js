@@ -1,30 +1,56 @@
 export default class Tabla{
-    array=[];
+    modelo=[];
     html;
-    constructor(headers, filas){        
-        this.array[0]=headers;
-        this.array.push(filas);
+    constructor(...modelo){        
+        this.modelo = modelo;
+        let headers = modelo.shift();
+        let filas = modelo;
+        let filasHtml = "";
         
+        console.log("modelo = ",this.modelo);
+        console.log("headers = ",headers);
+        console.log("filas = ",filas);
+
+        function filaHtml(celdas){ // recibe un array
+            let celdasArr = celdas;
+            let celdasHtml = celdasArr.join("</td><td>"); // unimos las celdas
+            let filaHtml = // creamos la fila
+            `
+            <tr class="toggle">
+                <td>${celdasHtml}</td>
+                <td style="display:none">
+                    <input type="button"id="editarFila" value="Editar"></input>
+                    <input type="button"id="eliminarFila" value="Eliminar"></input>
+                </td>
+            </tr>
+            `
+            return filaHtml;
+        }
+        
+        
+        console.log("filas Html= ",filasHtml);
+        // unimos las filas en un solo texto html
+        for (let i=0; i < filas.length ; i++){
+            filasHtml += filaHtml(filas[i]);
+        }
+
+        // creamos el elemento tabla y
         this.html = document.createElement("table");
+        // unimos todo como su html
         this.html.innerHTML= 
         `
         <thead>
         <tr>
-        <th>${headers.join("</th><th>")}</th>
-        
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="toggle">
-                    <td>${filas.join("</td><td>")}</td>
-                    <td style="display:none">
-                        <input type="button"id="editarFila" value="Editar"></input>
-                        <input type="button"id="eliminarFila" value="Eliminar"></input>
-                    </td>
-                </tr>
-            </tbody>
+            <th>
+                ${headers.join("</th><th>")}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            ${filasHtml}
+        </tbody>
         `;
-        this.array.push(filas);
+        this.modelo.push(filas);
 
         // mostrar/ocultar botones
         let toggles = this.html.querySelectorAll(".toggle");
