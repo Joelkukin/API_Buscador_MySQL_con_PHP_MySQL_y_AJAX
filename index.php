@@ -19,7 +19,9 @@
     </form>
     <div id="tablaBD"></div>
 
-<script src="./js/main.js" type="module"></script>
+<script src="./js/main.js" type="module">
+    
+</script>
 
 </body>
 </html>
