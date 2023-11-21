@@ -40,11 +40,11 @@ export default function generartabla(entrada){
 
                 // al hacer click sobre la celda, se mostraran u ocultaran los botones de la fila
                 celda.addEventListener("click",(e)=>{ 
-                    
                     // mostrar/ocultar botones
                     if(botones.style.display == "none"){
                         botones.style.display = "flex";
                     }else{botones.style.display = "none";}
+                    console.log("celda ",celda," presionada");
                 });
             }
             fila.appendChild( celda );

@@ -74,5 +74,5 @@ function objetoAArreglo(array = []) {
     
     return modelo;
 }
-
+ getData();
 
