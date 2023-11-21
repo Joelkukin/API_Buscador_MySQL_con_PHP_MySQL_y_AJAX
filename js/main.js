@@ -4,6 +4,7 @@ import generartabla from "../js/tabla.js";
 // BUSCADOR: lo que se haya escrito en el buscador, buscarlo en la base de datos
 let buscador = document.getElementById("formulario");
 let placeTabla = document.getElementById("tablaBD");
+let modelo
 buscador.inputSearch.addEventListener("keyup", ()=>{
     getData();
 } );
@@ -32,28 +33,46 @@ function getData()
         
     })
     .then(resultado => {
-        
+        placeTabla.innerHTML = "";
+        modelo = null;
         // Transformar el objeto resultado en un array
-        let container = document.createElement("div");
-        container.appendChild (generartabla(objetoAArreglo(resultado)));
-        placeTabla.innerHTML= container.innerHTML;
+        console.log("respuesta ajax = ",resultado);
+        if(resultado !== "La consulta no ha obtenido resultados"){
+            modelo = objetoAArreglo(resultado);
+            let tabla = generartabla(modelo)
+            console.log("modelo en ajax = ",modelo);
+            console.log("placeTabla.innerHtml = ",placeTabla.innerHTML);
+            console.log("generartabla(modelo) = ",tabla); // hasta aca todo bien
+            console.log(placeTabla.appendChild(tabla)); // aca se imprime mal
+        }else{
+            placeTabla.innerText = resultado;
+        }
         
     })
 }  
 
 // transformar un objeto en un arreglo
-function objetoAArreglo(objetos) {
-    // Primero, obtenemos las claves del primer objeto
-    var claves = Object.keys(objetos[0]);
+function objetoAArreglo(array = []) {
+    //console.log("array = ", array);
 
-    // Luego, mapeamos cada objeto a un array de sus valores
-    var valores = objetos.map(function(obj) {
-        return Object.values(obj);
-    });
+    
+    let propiedades = array[0];
+    propiedades = [Object.keys(propiedades)];
+    console.log("propiedades = ", propiedades);
 
-    // Finalmente, unimos las claves y los valores en un solo array
-    var resultado = [claves].concat(valores);
+    let nuevoArreglo = [];
 
-    return resultado;
+    for (let i = 0; i < array.length; i++) {
+        //console.log("\nFOR VUELTA ", i);
+        nuevoArreglo[i] = Object.values(array[i])
+        
+        //console.log("objeto = ", nuevoArreglo[i]);
+    }
+    console.log("nuevo arreglo = ",nuevoArreglo);
+    let modelo = propiedades.concat(nuevoArreglo); 
+    console.log("modelo = ",modelo);
+    
+    return modelo;
 }
+
 
