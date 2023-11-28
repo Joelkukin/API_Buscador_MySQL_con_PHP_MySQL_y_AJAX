@@ -1,5 +1,6 @@
 
-export function ajaxJson(url, body){
+export function ajaxJson(url, body){// body tiene que ser si o si un objeto json y url un string
+    
     // PETICIÓN
     return fetch(url,{ // hacemos la peticion http por ajax
         method:"POST", 
