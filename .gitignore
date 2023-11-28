@@ -1,3 +1,8 @@
+*.bkp
+*.url
+*.drawio 
+js/tablaPOO.js
 Abrir en navegador.url
 Ajax API.pdf
 API_Buscador_MySQL_con_PHP_MySQL_y_AJAX.code-workspace
+.vscode

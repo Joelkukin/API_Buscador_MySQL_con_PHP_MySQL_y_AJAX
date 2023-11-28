@@ -6,19 +6,20 @@ let buscador = document.getElementById("formulario");
 let placeTabla = document.getElementById("tablaBD");
 let modelo
 buscador.inputSearch.addEventListener("keyup", ()=>{
-    getData();
+    getAllData();
 } );
 
 
 
-function getData()
+function getAllData()
 {
     // tomar el valor del input
     let valBuscado = buscador.inputSearch.value;
     
     // AJAX: preparamos los datos que enviaremos
+    
     let options = {
-        funcion: "buscar",
+        funcion: "buscar", // OPCIONES: buscar, editar, borrar, crear
         valores: valBuscado
     };
     // AJAX: enviamos datos
@@ -36,14 +37,12 @@ function getData()
         placeTabla.innerHTML = "";
         modelo = null;
         // Transformar el objeto resultado en un array
-        console.log("respuesta ajax = ",resultado);
+        
         if(resultado !== "La consulta no ha obtenido resultados"){
             modelo = objetoAArreglo(resultado);
-            let tabla = generartabla(modelo)
-            console.log("modelo en ajax = ",modelo);
-            console.log("placeTabla.innerHtml = ",placeTabla.innerHTML);
-            console.log("generartabla(modelo) = ",tabla); // hasta aca todo bien
-            console.log(placeTabla.appendChild(tabla)); // aca se imprime mal
+            let tabla = generartabla(modelo);
+            console.log("tabla generada = ",tabla);
+            placeTabla.appendChild(tabla)
         }else{
             placeTabla.innerText = resultado;
         }
@@ -53,26 +52,21 @@ function getData()
 
 // transformar un objeto en un arreglo
 function objetoAArreglo(array = []) {
-    //console.log("array = ", array);
-
     
     let propiedades = array[0];
     propiedades = [Object.keys(propiedades)];
-    console.log("propiedades = ", propiedades);
 
     let nuevoArreglo = [];
 
     for (let i = 0; i < array.length; i++) {
-        //console.log("\nFOR VUELTA ", i);
+
         nuevoArreglo[i] = Object.values(array[i])
         
-        //console.log("objeto = ", nuevoArreglo[i]);
+
     }
-    console.log("nuevo arreglo = ",nuevoArreglo);
     let modelo = propiedades.concat(nuevoArreglo); 
-    console.log("modelo = ",modelo);
     
     return modelo;
 }
- getData();
+ getAllData();
 

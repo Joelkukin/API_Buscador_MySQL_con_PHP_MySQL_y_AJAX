@@ -1,5 +1,6 @@
 <?php
     function consulta($sql){
+        // poner aqui los datos de la base de datos
         $login = [
             "user"=> "root",
             "pswd"=> "", 
