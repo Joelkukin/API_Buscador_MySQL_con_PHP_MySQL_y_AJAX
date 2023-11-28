@@ -9,6 +9,7 @@ export default function generartabla(entrada){   // => tabla:DOMElement
     // creamos el elemento tabla y
     let container = document.createElement("div");
     let tabla = document.createElement("table");
+    tabla.classList.add("table");
     container.appendChild(tabla);
     
     // Creamos plantilla html de la tabla y unimos todo como su html
@@ -124,7 +125,7 @@ function hacerEditable(fila_original){ // => void
     // definimos la funcionalidad de los botones editar, eliminar y cancelar
     let botones = fila_nueva.querySelector(".botones");
     botones.style.display = "flex";
-
+    let fila_editada;
     // editar reemplaza los inputs por los valores escritos en éstos
     let btnEditar = fila_nueva.querySelector("#editar");
         btnEditar.addEventListener("click",()=>{
@@ -140,7 +141,7 @@ function hacerEditable(fila_original){ // => void
             }
 
             // crear fila con los valores de los inputs
-            let fila_editada = crearFila(valores_de_inputs);
+            fila_editada = crearFila(valores_de_inputs);
             let tabla = fila_nueva.parentNode
 
             // reemplazar la fila original por la nueva
@@ -154,11 +155,12 @@ function hacerEditable(fila_original){ // => void
     let btnCancelar = fila_nueva.querySelector("#cancelar");
         btnCancelar.addEventListener("click", ()=> {
             // reemplazo la fila editable por la original
-            tabla.replaceChilds(fila_editada, fila_original)
+
+            fila_nueva.replaceWith(fila_original)
         });
     // eliminar borra la fila en cuestion
     let btnEliminar = fila_nueva.querySelector("#eliminar");
-        btnEliminar.addEventListener("click", ()=> fila.remove() );
+        btnEliminar.addEventListener("click", ()=> fila_nueva.remove() );
 
     
   
