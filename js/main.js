@@ -1,5 +1,5 @@
 import {ajaxJson, ajaxForm} from "../js/ajax.js";
-import generartabla from "../js/tabla.js";
+import Tabla from "../js/tabla.js";
 
 // BUSCADOR: lo que se haya escrito en el buscador, buscarlo en la base de datos
 let buscador = document.getElementById("formulario");
@@ -31,9 +31,9 @@ function getAllData()
         
         if(resultado !== "La consulta no ha obtenido resultados"){
             modelo = objetoAArreglo(resultado);
-            let tabla = generartabla(modelo);
+            let tabla = new Tabla(modelo);
             console.log("tabla generada = ",tabla);
-            placeTabla.appendChild(tabla)
+            placeTabla.appendChild(tabla.html)
         }else{
             placeTabla.innerText = resultado;
         }
