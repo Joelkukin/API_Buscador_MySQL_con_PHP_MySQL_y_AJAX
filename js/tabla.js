@@ -1,8 +1,13 @@
+class tabla {
+    constructor(nombre, columnas) {
+        
+    }
+}
 
-export default function generartabla(entrada){   // => tabla:DOMElement
+
+export default function generartabla(modelo){   // => tabla:DOMElement
     
     // Separo los headers del contenido
-    let modelo = entrada;
     let headers = modelo.shift();
     let filas = modelo;
 

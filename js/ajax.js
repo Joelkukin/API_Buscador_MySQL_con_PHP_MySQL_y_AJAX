@@ -12,7 +12,10 @@ export function ajaxJson(url, body){// body tiene que ser si o si un objeto json
     // RESPUESTA
     .then(response => response.json())
     .then(json => {
-        return json
+        // transformo la respuesta de texto json a objeto
+        let resultado = JSON.parse( json.respuesta ) 
+        return resultado
+        
     })
     .catch((error) => {
         console.log('Error:', error);

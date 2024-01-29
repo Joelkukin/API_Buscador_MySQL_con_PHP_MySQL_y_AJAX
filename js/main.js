@@ -24,15 +24,6 @@ function getAllData()
     };
     // AJAX: enviamos datos
     return ajaxJson( "php/api.php", options )
-    
-    // guardo la respuesta en resAjaxJson
-    .then(resAjaxJson => { 
-        
-        // transformo la respuesta de texto json a objeto
-        let resultado = JSON.parse( resAjaxJson.respuesta ) 
-        return resultado
-        
-    })
     .then(resultado => {
         placeTabla.innerHTML = "";
         modelo = null;
